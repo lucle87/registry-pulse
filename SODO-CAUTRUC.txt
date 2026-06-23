@@ -1,0 +1,40 @@
+==========================================
+  SO DO CAU TRUC - DU AN registry-pulse
+==========================================
+
+registry-pulse/
+|
+|-- app/
+|   |-- api/
+|   |   `-- company/
+|   |       `-- route.ts          <- endpoint tra cuu cong ty (gate MPP 402)
+|   |-- openapi.json/route.ts     <- discovery (THU MUC chua route.ts)
+|   |-- llms.txt/route.ts         <- docs agent (THU MUC chua route.ts)
+|   |-- icon.svg
+|   |-- layout.tsx
+|   `-- page.tsx
+|
+|-- lib/
+|   |-- config.ts                 <- MPP: token, vi nhan, gia, realm
+|   |-- http.ts                   <- fetch JSON co timeout
+|   |-- registry.ts               <- router + types + chon provider theo country
+|   `-- providers/
+|       |-- gleif.ts              <- GLOBAL (LEI) - free
+|       |-- uk.ts                 <- GB (Companies House) - can key free
+|       |-- us.ts                 <- US (SEC EDGAR) - can email UA
+|
+|-- package.json
+|-- tsconfig.json
+|-- next.config.js
+|-- .env.example
+|-- .gitignore
+`-- README.md
+
+THEM NUOC MOI = them 1 file lib/providers/<nuoc>.ts theo interface Provider,
+dang ky vao PROVIDERS trong lib/registry.ts. Khong dung MPP/route.
+
+CHAY:
+  npm install
+  copy .env.example .env   (RECIPIENT ca 2 dong, CONTACT_EMAIL, PREVIEW_KEY)
+  npm run dev
+==========================================
