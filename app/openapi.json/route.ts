@@ -31,6 +31,16 @@ export async function GET() {
           operationId: "lookupCompany",
           summary: "Company registry lookup by name or id (GLEIF, UK, US)",
           tags: ["data", "company", "registry", "kyb", "lei", "verification"],
+          "x-agent-guidance": {
+            whenToUse:
+              'Use when an agent needs to verify or look up a registered company by name or registration id across public registries (GLEIF/LEI, UK Companies House, US). KYB / due-diligence context.',
+            input:
+              'POST JSON: { query (company name or id), country? (e.g. gb, us), type? (auto|name|id) }.',
+            output:
+              'matched companies with name, jurisdiction, registration id, status, and source registry.',
+            paymentFlow:
+              'First call returns HTTP 402 with a Tempo MPP challenge. Pay with mppx (USDC.e on Tempo), then retry the same request to get 200.',
+          },
           "x-payment-info": {
             price: { mode: "fixed", amount: PRICE, currency: "USD" },
             protocols: [{ mpp: {} }],
